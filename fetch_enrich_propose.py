@@ -23,12 +23,14 @@ def fetch_misp_object(EVENTid):
         enrich(ioc_value)
 
 # change Distribution to "Your organisation only" to ignore pull requests.
-def change_distribution(event):
-    misp_event = MISPEvent()
-    misp_event.load(event)
-    misp_event.distribution = 0
-    misp.update_event(misp_event)
-    print('Distribution is changed to "Your organisation only" to lock this Event.')
+# However, Pull request pulls proposal data.
+# If you need to change the distribution, please uncomment them.
+# def change_distribution(event):
+#     misp_event = MISPEvent()
+#     misp_event.load(event)
+#     misp_event.distribution = 0
+#     misp.update_event(misp_event)
+#     print('Distribution is changed to "Your organisation only" to lock this Event.')
 
 def enrich(ioc_value):
     q = r'{"config": {"apikey": "' + VTPublic_APIkey + '"}, "attribute": {"value": "' + ioc_value + '", "type": "domain"}}'
